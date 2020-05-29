@@ -30,33 +30,23 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Actions</th>
+                    <th>User Orders</th>
                 </tr>
             </thead>
             <tbody>
 
+            @foreach ($users as $user)
                 <tr>
-                    <td>23333</td>
-                    <td>Fernando Motta</td>
-                    <td>fvvmotta@gmail.com</td>
-                    <td>
-                    <a href="" class="btn btn-sm btn-info">Edit</a>
-
-                    <a href="" class="btn btn-sm btn-warning">More Info</a>
-
-                        <form class="d-inline" method="POST" action="" onsubmit="return confirm('Tem Certeza que Deseja Excluir?')">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-
-                    </td>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->firstname}} {{$user->lastname}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->userorders}}</td>
                 </tr>
 
+                @endforeach
             </tbody>
         </table>
     </div>
 </div>
-
 
 @endsection
