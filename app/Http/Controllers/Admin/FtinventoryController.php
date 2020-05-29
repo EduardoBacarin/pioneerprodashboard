@@ -21,7 +21,7 @@ class FtinventoryController extends Controller
      */
     public function index()
     {
-        return view('admin.ftshippings.index');
+        return view('admin.ftinventory.index');
     }
 
     /**
