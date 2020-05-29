@@ -126,10 +126,10 @@ class FtordersController extends Controller
 
         $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
         $orders = $orders->appends(Request::capture()->except('page'));
-
-        return view('admin.ftorders.index', compact('orders'));        
+    
         }
     }  
+    return view('admin.ftorders.index', compact('orders'));    
 }
     public function save(Request $request) 
     {

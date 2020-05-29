@@ -28,8 +28,9 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th>User Orders</th>
+                    <th>Customer e-Mail</th>
+                    <th>Address e-Mail</th>
+                    <th>Address 1</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,12 +40,16 @@
                     <td>{{$user->id}}</td>
                     <td>{{$user->firstname}} {{$user->lastname}}</td>
                     <td>{{$user->email}}</td>
-                    <td>{{$user->userorders}}</td>
+                    <td>{{$user->addressemail}}</td>
+                    <td>{{$user->address1}}</td>
                 </tr>
 
                 @endforeach
             </tbody>
         </table>
+        <div class="row">
+            {{ $users->links() }}
+        </div>
     </div>
 </div>
 
