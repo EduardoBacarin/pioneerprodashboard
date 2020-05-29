@@ -221,12 +221,12 @@ return [
         ],
         [
             'text'         => 'Shipments',
-            'url'          => 'painel',
+            'url'          => 'painel/ftshippings',
             'icon'         => 'fa fa-truck'
         ],
         [
             'text'         => 'Inventory',
-            'url'          => 'painel',
+            'url'          => 'painel/ftinventory',
             'icon'         => 'far fa fa-shopping-cart'
         ],
         ['header' => 'PioneerPro Configuration'],

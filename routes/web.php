@@ -37,6 +37,10 @@ Route::prefix('painel')->group(function(){
     Route::resource('ftusers', 'Admin\FtusersController');
 
     Route::resource('ftorders', 'Admin\FtordersController');
+    
+    Route::resource('ftshippings', 'Admin\FtShippingsController');
+    
+    Route::resource('ftinventory', 'Admin\FtinventoryController');
 
     //Route::post('store', 'Admin\FtordersController@store')->name('store');
     

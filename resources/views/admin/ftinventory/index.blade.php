@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Users')
+@section('title', 'Inventory')
 
 @section('content_header')
     <h1>
-        Fleet Things Users
+        Fleet Things Inventory
     </h1>
 
     <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
@@ -34,15 +34,13 @@
             </thead>
             <tbody>
 
-            @foreach ($users as $user)
                 <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->firstname}} {{$user->lastname}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->userorders}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
-                @endforeach
             </tbody>
         </table>
     </div>
