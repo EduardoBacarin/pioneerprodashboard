@@ -48,8 +48,6 @@
             </thead>
             <tbody>
                 @foreach ($orders as $order)  
-                @method('PUT')
-                @csrf
                     <tr>
                         <td><a href="https://shop.fleetthings.com/Admin/Order/Edit/{{$order->Id}}">{{$order->Id}}</a></td>
                         <td>{{$order->CustomerEmail}}</td>

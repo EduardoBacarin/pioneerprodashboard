@@ -3,47 +3,74 @@
 @section('title', 'Inventory')
 
 @section('content_header')
-    <h1>
-        Fleet Things Inventory
-    </h1>
-
-    <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-
-@endsection
-
-@section('content')
-<div class="card">
-    <div class="card-body">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>User Orders</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-            </tbody>
-        </table>
+<div class="container">
+   <h3 align="center">Import Excel File</h3>
+    <br />
+   @if(count($errors) > 0)
+    <div class="alert alert-danger">
+     Upload Validation Error<br><br>
+     <ul>
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+     </ul>
     </div>
-</div>
+   @endif
+
+   @if($message = Session::get('success'))
+   <div class="alert alert-success alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+           <strong>{{ $message }}</strong>
+   </div>
+   @endif
+   <form method="post" enctype="multipart/form-data" action=" {{ url('/ftinventory/import') }} ">
+    {{ csrf_field() }}
+    <div class="form-group">
+     <table class="table">
+      <tr>
+       <td width="40%" align="right"><label>Select File for Upload</label></td>
+       <td width="30">
+        <input type="file" name="select_file" />
+       </td>
+       <td width="30%" align="left">
+        <input type="submit" name="upload" class="btn btn-primary" value="Upload">
+       </td>
+      </tr>
+      <tr>
+       <td width="40%" align="right"></td>
+       <td width="30"><span class="text-muted">.xls, .xslx</span></td>
+       <td width="30%" align="left"></td>
+      </tr>
+     </table>
+    </div>
+   </form>
+   
+   <br />
+   <div class="panel panel-default">
+    <div class="panel-heading">
+     <h3 class="panel-title">Inventory Report</h3>
+    </div>
+    <div class="panel-body">
+     <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+       <tr>
+        <th>SKU</th>
+        <th>Name</th>
+        <th>Inventory</th>
+       </tr>
+       @foreach($data as $row)
+       <tr>
+        <td>{{ $row->sku }}</td>
+        <td>{{ $row->name }}</td>
+        <td>{{ $row->inventory }}</td>
+       </tr>
+       @endforeach
+      </table>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
 
 @endsection

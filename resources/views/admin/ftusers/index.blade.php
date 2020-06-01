@@ -34,7 +34,6 @@
                 </tr>
             </thead>
             <tbody>
-
             @foreach ($users as $user)
                 <tr>
                     <td>{{$user->id}}</td>
@@ -43,8 +42,7 @@
                     <td>{{$user->addressemail}}</td>
                     <td>{{$user->address1}}</td>
                 </tr>
-
-                @endforeach
+            @endforeach
             </tbody>
         </table>
         <div class="row">

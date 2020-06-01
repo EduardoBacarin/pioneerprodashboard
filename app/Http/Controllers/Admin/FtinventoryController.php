@@ -5,12 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Ftinventory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp;
-use GuzzleHttp\Client;
+use Excel;
 
 class FtinventoryController extends Controller
 {
@@ -21,8 +17,11 @@ class FtinventoryController extends Controller
      */
     public function index()
     {
-        return view('admin.ftinventory.index');
+        $data = DB::table('ftinventories')->orderBy('id', 'DESC')
+        ->get();
+        return view('admin.ftinventory.index', compact('data'));
     }
+
 
     /**
      * Show the form for creating a new resource.

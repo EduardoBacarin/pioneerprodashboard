@@ -49,21 +49,19 @@ class FtusersController extends Controller
             //die();
             if(sizeof($data)>0) {
                 DB::table('ftusers')->InsertOrIgnore($data);
-            
-            $qty = $request['qtd'] ?: 10;
-            $page = $request['page'] ?: 1;
 
-            Paginator::currentPageResolver (function() use ($page) {
-                return $page;
-            });
-
-            $users = DB::table('ftusers')->orderBy('id','desc')->paginate($qty);
-            $users = $users->appends(Request::capture()->except('page'));
-            
-                return view('admin.ftusers.index', compact('users'));
-            
         }
+        $qty = $request['qtd'] ?: 10;
+        $page = $request['page'] ?: 1;
+
+        Paginator::currentPageResolver (function() use ($page) {
+            return $page;
+        });
+
+        $users = DB::table('ftusers')->orderBy('id','desc')->paginate($qty);
+        $users = $users->appends(Request::capture()->except('page'));
     }
+    return view('admin.ftusers.index', compact('users'));
 }
 
     /**
