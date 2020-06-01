@@ -47,7 +47,7 @@ class FtusersController extends Controller
             //print(sizeof($data));
             //var_dump($data);
             //die();
-            if(sizeof($data)>0) {
+            if(sizeof($data)>0 && $data['firstname'] != null) {
                 DB::table('ftusers')->InsertOrIgnore($data);
 
         }
