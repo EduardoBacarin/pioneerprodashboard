@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
-        $this->middleware('can:edit-users');
+        $this->middleware('can:adminonly');
     }
     /**
      * Display a listing of the resource.
