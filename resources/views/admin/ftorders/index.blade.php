@@ -49,7 +49,7 @@
             <tbody>
                 @foreach ($orders as $order)  
                     <tr>
-                        <td><a href="https://shop.fleetthings.com/Admin/Order/Edit/{{$order->Id}}">{{$order->Id}}</a></td>
+                        <td><a href="https://shop.fleetthings.com/Admin/Order/Edit/{{$order->Id}}"  target="_blank">{{$order->Id}}</a></td>
                         <td>{{$order->CustomerEmail}}</td>
                         <td>{{$order->StoreName}}</td>
                         <td>
