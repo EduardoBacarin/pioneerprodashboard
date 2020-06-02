@@ -35,8 +35,10 @@ Route::prefix('painel')->group(function(){
 
     //Rotas do Fleet Things começa aqui
     Route::resource('ftusers', 'Admin\FtusersController');
+    Route::get('ftuserssave', 'Admin\FtusersController@save')->name('ftusers.save');
 
     Route::resource('ftorders', 'Admin\FtordersController');
+    Route::get('ftorderssave', 'Admin\FtordersController@save')->name('ftorders.save');
     
     Route::resource('ftshippings', 'Admin\FtShippingsController');
     

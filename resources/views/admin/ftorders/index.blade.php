@@ -4,8 +4,8 @@
 
 @section('content_header')
     <h1>
-        Fleet Things Orders
-    <!--<a href="" class="btn btn-sm btn-success">Novo Usuário</a>-->
+        Fleet Things Orders 
+    <a href="{{route('ftorders.save')}}" class="btn btn-sm btn-success">Update Orders</a>
     </h1>
 
     <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
@@ -84,7 +84,7 @@
                             </td>
                             <td>
                             <div class="Update">
-                            <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-sm btn-info">Update</a>
+                            <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-sm btn-info">Edit</a>
                             </div>
                             </td>
                     </tr> 

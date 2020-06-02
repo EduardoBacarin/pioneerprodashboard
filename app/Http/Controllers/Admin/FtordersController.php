@@ -23,13 +23,34 @@ class FtordersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        $qty = $request['qtd'] ?: 10;
+        $page = $request['page'] ?: 1;
 
+        Paginator::currentPageResolver (function() use ($page) {
+            return $page;
+        });
+
+        $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
+        $orders = $orders->appends(Request::capture()->except('page')); 
+
+        return view('admin.ftorders.index', compact('orders'));  
+    
+    }
+
+
+    public function save(Request $request) 
+    {
         $client = new Client();
 
         $url = "http://sh4d0w:654607@multcommerce.com:8080/ListOrdersFromBegining.php?listorders=1000";
-        $ftorders = json_decode(file_get_contents($url));
-
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        $ftorders = json_decode(curl_exec($ch));
+        //$ftorders = json_decode(file_get_contents($url));
+    
         $data = array();
         
         foreach($ftorders as $ftorder) {
@@ -117,24 +138,22 @@ class FtordersController extends Controller
         if(sizeof($data)>0) {
             DB::table('ftorders')->insertOrIgnore($data);
         
-        $qty = $request['qtd'] ?: 10;
-        $page = $request['page'] ?: 1;
-
-        Paginator::currentPageResolver (function() use ($page) {
-            return $page;
-        });
-
-        $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
-        $orders = $orders->appends(Request::capture()->except('page'));
+            $qty = $request['qtd'] ?: 10;
+            $page = $request['page'] ?: 1;
     
+            Paginator::currentPageResolver (function() use ($page) {
+                return $page;
+            });
+    
+            $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
+            $orders = $orders->appends(Request::capture()->except('page')); 
         }
-    }  
-    return view('admin.ftorders.index', compact('orders'));    
-}
-    public function save(Request $request) 
-    {
-
     }
+    return view('admin.ftorders.index', compact('orders')); 
+}
+
+    
+
     
     /**
      * Show the form for creating a new resource.

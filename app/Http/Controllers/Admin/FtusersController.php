@@ -24,33 +24,6 @@ class FtusersController extends Controller
      */
     public function index(Request $request)
     {
-            $client = new Client();
-           
-            $url = "http://sh4d0w:654607@multcommerce.com:8080/ListBillingAddressFromBegining.php?listorders=226";
-            $ftusers = json_decode(file_get_contents($url));
-
-            $data = array();
-            //dd($ftusers);
-            foreach($ftusers as $ftuser) {
-                
-                if (DB::table('ftusers')->where('id', $ftuser->Customer_Id)->doesntExist())
-                    $data = array(
-                        'id' => $ftuser->Customer_Id,
-                        'firstname' => $ftuser->FirstName,
-                        'lastname' => $ftuser->LastName,
-                        'email' => $ftuser->CustomerEmail,
-                        'addressemail' => $ftuser->AddressEmail,
-                        'address1' => $ftuser->Address1
-                    );
-            
-        
-            //print(sizeof($data));
-            //var_dump($data);
-            //die();
-            if(sizeof($data)>0 && $data['firstname'] != null) {
-                DB::table('ftusers')->InsertOrIgnore($data);
-
-        }
         $qty = $request['qtd'] ?: 10;
         $page = $request['page'] ?: 1;
 
@@ -60,9 +33,55 @@ class FtusersController extends Controller
 
         $users = DB::table('ftusers')->orderBy('id','desc')->paginate($qty);
         $users = $users->appends(Request::capture()->except('page'));
-    }
+    
     return view('admin.ftusers.index', compact('users'));
+    }
+
+
+public function save(Request $request)
+{
+        $client = new Client();
+       
+        $url = "http://sh4d0w:654607@multcommerce.com:8080/ListBillingAddressFromBegining.php?listorders=226";
+        $ftusers = json_decode(file_get_contents($url));
+
+        $data = array();
+        //dd($ftusers);
+        foreach($ftusers as $ftuser) {
+            
+            if (DB::table('ftusers')->where('id', $ftuser->Customer_Id)->doesntExist())
+                $data = array(
+                    'id' => $ftuser->Customer_Id,
+                    'firstname' => $ftuser->FirstName,
+                    'lastname' => $ftuser->LastName,
+                    'email' => $ftuser->CustomerEmail,
+                    'addressemail' => $ftuser->AddressEmail,
+                    'address1' => $ftuser->Address1
+                );
+        
+    
+        //print(sizeof($data));
+        //var_dump($data);
+        //die();
+        if(sizeof($data)>0 && $data['firstname'] != null) {
+            DB::table('ftusers')->InsertOrIgnore($data);
+
+    }
+    $qty = $request['qtd'] ?: 10;
+    $page = $request['page'] ?: 1;
+
+    Paginator::currentPageResolver (function() use ($page) {
+        return $page;
+    });
+
+    $users = DB::table('ftusers')->orderBy('id','desc')->paginate($qty);
+    $users = $users->appends(Request::capture()->except('page'));
+
+
 }
+return view('admin.ftusers.index', compact('users'));
+}
+
 
     /**
      * Show the form for creating a new resource.

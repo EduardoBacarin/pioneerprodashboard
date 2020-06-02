@@ -5,6 +5,7 @@
 @section('content_header')
     <h1>
         Fleet Things Users
+        <a href="{{route('ftusers.save')}}" class="btn btn-sm btn-success">Update Users</a>
     </h1>
 
     <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
