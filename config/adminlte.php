@@ -244,7 +244,7 @@ return [
             'text'        => 'My Users',
             'url'         => 'painel/users',
             'icon'        => 'far fa-user',
-            'can'         => 'edit-users',
+            'can'         => 'adminonly',
         ],
         ['header' => 'Configuration'],
         [
