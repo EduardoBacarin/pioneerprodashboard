@@ -37,7 +37,7 @@
             <tbody>
             @foreach ($users as $user)
                 <tr>
-                    <td>{{$user->id}}</td>
+                    <td><a href="https://shop.fleetthings.com/Admin/Customer/Edit/{{$user->id}}">{{$user->id}}</a></td>
                     <td>{{$user->firstname}} {{$user->lastname}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->addressemail}}</td>
