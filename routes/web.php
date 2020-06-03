@@ -42,11 +42,11 @@ Route::prefix('painel')->group(function(){
     
     Route::resource('ftshippings', 'Admin\FtShippingsController');
     
-    Route::resource('ftinventory', 'Admin\FtinventoryController');
 
     //Route::post('store', 'Admin\FtordersController@store')->name('store');
 
-    Route::post('ftinventory/import', 'Admin\FtinventoryController@import')->name('ftinventory.import');
+    Route::get('ftinventory', 'Admin\FtinventoryController@index');
+    Route::post('ftinventoryimport', 'Admin\FtinventoryController@import')->name('ftinventory.import');
     
     });
 

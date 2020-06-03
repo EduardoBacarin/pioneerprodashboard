@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Ftinventory;
 use App\Http\Controllers\Controller;
+use App\Imports\ImportInventory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Excel;
@@ -18,42 +19,17 @@ class FtinventoryController extends Controller
     public function index()
     {
 
-         $data = DB::table('inventory')->orderBy('id')->get();
+         $data = Ftinventory::orderBy('id')->get();
          return view('admin.ftinventory.index', compact('data'));
         }
     
         function import(Request $request)
         {
-         $this->validate($request, [
-          'select_file'  => 'required|mimes:xls,xlsx'
-         ]);
-    
-         $path = $request->file('select_file')->getRealPath();
-    
-         $data = Excel::load($path)->get();
-    
-         if($data->count() > 0)
-         {
-          foreach($data->toArray() as $key => $value)
-          {
-           foreach($value as $row)
-           {
-            $insert_data[] = array(
-             'Clave'  => $row['ProductSKU'],
-             'Nombre'   => $row['ProductName'],
-             'Inventario'   => $row['Quantity']
-            );
-           }
-          }
-    
-          if(!empty($insert_data))
-          {
-           DB::table('inventory')->insert($insert_data);
-          }
-         }
-         return back()->with('success', 'Excel Data Imported successfully.');
-        }
+            $request->validate(['import_file' => 'required']);
 
+            Excel::import(new ImportInventory, request()->file('import_file'));
+            return back()->with('success','Inventory Imported');
+        }   
 
     /**
      * Show the form for creating a new resource.

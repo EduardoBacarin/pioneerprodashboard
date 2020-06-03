@@ -3,55 +3,40 @@
 @section('title', 'Inventory')
 
 @section('content_header')
-<html>
  <body>
   <br />
   
   <div class="container">
-   <h3 align="center">Import Excel File in Laravel</h3>
-    <br />
-   @if(count($errors) > 0)
-    <div class="alert alert-danger">
-     Upload Validation Error<br><br>
-     <ul>
-      @foreach($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-     </ul>
-    </div>
-   @endif
-
+    <div class="card mt-4">
+        <div class="card-header">
+            Laravel 6 Import Excel to database - W3Adda
+        </div>
+            @if ($errors->any())
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
    @if($message = Session::get('success'))
    <div class="alert alert-success alert-block">
     <button type="button" class="close" data-dismiss="alert">×</button>
            <strong>{{ $message }}</strong>
    </div>
    @endif
-   <form method="post" enctype="multipart/form-data" action="{{ route('ftinventory.import') }}">
-    {{ csrf_field() }}
-    @method('PUT')
-    <div class="form-group">
-     <table class="table">
-      <tr>
-       <td width="40%" align="right"><label>Select File for Upload</label></td>
-       <td width="30">
-        <input type="file" name="select_file" />
-       </td>
-       <td width="30%" align="left">
-        <input type="submit" name="upload" class="btn btn-primary" value="Upload">
-       </td>
-      </tr>
-      <tr>
-       <td width="40%" align="right"></td>
-       <td width="30"><span class="text-muted">.xls, .xslx</span></td>
-       <td width="30%" align="left"></td>
-      </tr>
-     </table>
+        <div class="card-body">
+            <form action="{{route('ftinventory.import')}}" method="POST" name="importform" enctype="multipart/form-data">
+                @csrf             
+                <input type="file" name="import_file" class="form-control">
+                <br>
+                <button class="btn btn-success">Import File</button>
+            </form>
+        </div>
     </div>
-   </form>
-   
-   <br />
-   <div class="panel panel-default">
+    <div class="panel panel-default">
     <div class="panel-heading">
      <h3 class="panel-title">Customer Data</h3>
     </div>
@@ -59,23 +44,25 @@
      <div class="table-responsive">
       <table class="table table-bordered table-striped">
        <tr>
-        <th>SKU</th>
         <th>Name</th>
-        <th>Quantity</th>
-       </tr>
-       @foreach($data as $row)
+        <th>Email</th>
+        <th>Phone</th>
+               </tr>
+       @foreach($data as $d)
        <tr>
-        <td>{{ $row->ProductSKU }}</td>
-        <td>{{ $row->ProductName }}</td>
-        <td>{{ $row->Quantity }}</td>
+        <td>{{ $d->ProductSKU }}</td>
+        <td>{{ $d->ProductName }}</td>
+        <td>{{ $d->Quantity }}</td>
        </tr>
        @endforeach
       </table>
      </div>
     </div>
-   </div>
-  </div>
- </body>
+</div>
+
+</div>
+    
+</body>
 </html>
 
 @endsection
