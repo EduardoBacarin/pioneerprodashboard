@@ -3,8 +3,12 @@
 @section('title', 'Inventory')
 
 @section('content_header')
-<div class="container">
-   <h3 align="center">Import Excel File</h3>
+<html>
+ <body>
+  <br />
+  
+  <div class="container">
+   <h3 align="center">Import Excel File in Laravel</h3>
     <br />
    @if(count($errors) > 0)
     <div class="alert alert-danger">
@@ -23,8 +27,9 @@
            <strong>{{ $message }}</strong>
    </div>
    @endif
-   <form method="post" enctype="multipart/form-data" action=" {{ url('/ftinventory/import') }} ">
+   <form method="post" enctype="multipart/form-data" action="{{ route('ftinventory.import') }}">
     {{ csrf_field() }}
+    @method('PUT')
     <div class="form-group">
      <table class="table">
       <tr>
@@ -48,7 +53,7 @@
    <br />
    <div class="panel panel-default">
     <div class="panel-heading">
-     <h3 class="panel-title">Inventory Report</h3>
+     <h3 class="panel-title">Customer Data</h3>
     </div>
     <div class="panel-body">
      <div class="table-responsive">
@@ -56,13 +61,13 @@
        <tr>
         <th>SKU</th>
         <th>Name</th>
-        <th>Inventory</th>
+        <th>Quantity</th>
        </tr>
        @foreach($data as $row)
        <tr>
-        <td>{{ $row->sku }}</td>
-        <td>{{ $row->name }}</td>
-        <td>{{ $row->inventory }}</td>
+        <td>{{ $row->ProductSKU }}</td>
+        <td>{{ $row->ProductName }}</td>
+        <td>{{ $row->Quantity }}</td>
        </tr>
        @endforeach
       </table>

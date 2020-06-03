@@ -46,7 +46,7 @@ Route::prefix('painel')->group(function(){
 
     //Route::post('store', 'Admin\FtordersController@store')->name('store');
 
-    Route::post('ftinventory/import', 'Admin\FtinventoryController@import');
+    Route::post('ftinventory/import', 'Admin\FtinventoryController@import')->name('ftinventory.import');
     
     });
 

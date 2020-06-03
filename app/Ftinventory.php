@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ftinventory extends Model
 {
     protected $fillable = [
-        "id", "sku", "name", "inventory"
+        "Id", "ProductSku", "ProductName", "Quantity"
     ];
-    protected $table = "ftinventory";
+    protected $table = "inventory";
 }
