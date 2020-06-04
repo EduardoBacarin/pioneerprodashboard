@@ -5,11 +5,11 @@
 @section('content_header')
  <body>
   <br />
-  
+@can('adminonly', App\User::class)  
   <div class="container">
     <div class="card mt-4">
         <div class="card-header">
-            <h3>Inventory Report<h3>
+            <h3>Inventory Report Upload<h3>
         </div>
             @if ($errors->any())
         <div class="alert alert-danger">
@@ -34,17 +34,18 @@
                 <br>
                 <button class="btn btn-success">Import File</button>
             </form>
-            <br>
+            <br>  
             <form action="{{route('ftinventory.truncate')}}" method="POST">       
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">      
                 <button class="btn btn-danger">Truncate Table</button>
             </form>
+            @endcan
         </div>
     </div>
     <div class="panel panel-default">
     <div class="panel-heading">
-     <h3 class="panel-title">Customer Data</h3>
+     <h3 class="panel-title">Inventory Report</h3>
     </div>
     <div class="panel-body">
      <div class="table-responsive">
