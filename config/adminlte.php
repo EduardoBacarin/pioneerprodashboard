@@ -221,7 +221,7 @@ return [
         ],
         [
             'text'         => 'Shipments',
-            'url'          => 'painel/ftshippings',
+            //'url'          => 'painel/ftshippings',
             'icon'         => 'fa fa-truck'
         ],
         [
