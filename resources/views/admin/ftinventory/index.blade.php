@@ -34,6 +34,11 @@
                 <br>
                 <button class="btn btn-success">Import File</button>
             </form>
+            <br>
+            <form action="{{route('ftinventory.truncate')}}" method="DELETE">       
+            @csrf    
+                <button class="btn btn-danger">Truncate Table</button>
+            </form>
         </div>
     </div>
     <div class="panel panel-default">

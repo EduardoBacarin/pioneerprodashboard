@@ -94,6 +94,15 @@ class FtinventoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+    
     }
+
+    public function truncate()
+    {
+        $truncate = DB::table('ftinventory')->truncate();
+        dd($truncate);
+        return back();
+    }
+
+    
 }

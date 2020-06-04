@@ -47,6 +47,11 @@ Route::prefix('painel')->group(function(){
 
     Route::get('ftinventory', 'Admin\FtinventoryController@index');
     Route::post('ftinventoryimport', 'Admin\FtinventoryController@import')->name('ftinventory.import');
+
+
+    Route::delete('ftinventorytruncate', 'Admin\FtinventoryController@truncate')->name('ftinventory.truncate');
+
+    //Route::delete('ftinventory/truncate',array('as'=>'ftinventory.truncate', 'uses'=>'FtinventoryController@truncate'));
     
     });
 
