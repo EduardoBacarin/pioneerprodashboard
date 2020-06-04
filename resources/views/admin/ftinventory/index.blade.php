@@ -9,7 +9,7 @@
   <div class="container">
     <div class="card mt-4">
         <div class="card-header">
-            Laravel 6 Import Excel to database - W3Adda
+            <h3>Inventory Report<h3>
         </div>
             @if ($errors->any())
         <div class="alert alert-danger">
@@ -44,9 +44,9 @@
      <div class="table-responsive">
       <table class="table table-bordered table-striped">
        <tr>
+        <th>SKU</th>
         <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
+        <th>Inventory</th>
                </tr>
        @foreach($data as $d)
        <tr>

@@ -21,7 +21,12 @@ class FtShippingsController extends Controller
      */
     public function index()
     {
-        return view('admin.ftshippings.index');
+        $ftorders = Ftorder::paginate(10);
+        $loggedId = intval(Auth::id());
+        return view('admin.ftshippings.index', [
+            'users' => $users,
+            'loggedId' => $loggedId
+        ]);
     }
 
     /**

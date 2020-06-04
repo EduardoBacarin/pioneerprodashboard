@@ -23,13 +23,13 @@ class FtinventoryController extends Controller
          return view('admin.ftinventory.index', compact('data'));
         }
     
-        function import(Request $request)
-        {
-            $request->validate(['import_file' => 'required']);
+    function import(Request $request)
+    {
+        $request->validate(['import_file' => 'required']);
 
-            Excel::import(new ImportInventory, request()->file('import_file'));
-            return back()->with('success','Inventory Imported');
-        }   
+        Excel::import(new ImportInventory, request()->file('import_file'));
+        return back()->with('success','Inventory Imported');
+    }   
 
     /**
      * Show the form for creating a new resource.

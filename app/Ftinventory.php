@@ -9,7 +9,7 @@ class Ftinventory extends Model
     public $timestamps = false;
     
     protected $fillable = [
-        "Id", "ProductSku", "ProductName", "Quantity"
+        "Id","ProductSKU", "ProductName", "Quantity"
     ];
     protected $table = "inventory";
 }
