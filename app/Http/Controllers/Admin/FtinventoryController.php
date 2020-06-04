@@ -99,8 +99,7 @@ class FtinventoryController extends Controller
 
     public function truncate()
     {
-        $truncate = DB::table('ftinventory')->truncate();
-        dd($truncate);
+        DB::table('inventory')->truncate();
         return back();
     }
 

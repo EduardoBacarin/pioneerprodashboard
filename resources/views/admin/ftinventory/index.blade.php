@@ -35,8 +35,9 @@
                 <button class="btn btn-success">Import File</button>
             </form>
             <br>
-            <form action="{{route('ftinventory.truncate')}}" method="DELETE">       
-            @csrf    
+            <form action="{{route('ftinventory.truncate')}}" method="POST">       
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">      
                 <button class="btn btn-danger">Truncate Table</button>
             </form>
         </div>
