@@ -30,16 +30,16 @@
         <table class="table table-hover ">
             <thead>
                 <tr>
-                    <th style="position: sticky; top: 0; background-color: white;">Order Id</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Customer Email</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Store</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Amount</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Status</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Paid</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Shipping Status</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Currency Rate</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Amount in Currency</th>
-                    <th style="position: sticky; top: 0; background-color: white;">Save Changes</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Order Id</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Customer Email</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Store</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Amount</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Status</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Paid</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Shipping Status</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Currency Rate</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Amount in Currency</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Save Changes</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,31 +123,52 @@
                             <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-sm btn-info">Edit</a>
                             </div>
                             </td>
+
+                        <tr>
+                        <tr>
+                            <td style="border:none;  background-color: #f2f2f2;"></td>
+                            <td style="border:none;  background-color: #f2f2f2;"></td>
+                            <td  name = "Approved" style="border:none;  background-color: #f2f2f2;">
+                            <b>Approved</b><br>
+                            </td>
+                            <td name = "Request Shipment" style="border:none;  background-color: #f2f2f2;">
+                                <b>Request Shipment</b><br>
+                            </td>
+                            <td name = "Shipment Ready" style="border:none;  background-color: #f2f2f2;">
+                                <b>Shipment Ready</b><br>
+                            </td>
+                            <td name = "Request Invoice" style="border:none;  background-color: #f2f2f2;">
+                                <b>Request Invoice</b><br>
+                            </td>
+                            <td name = "InvoiceReady" style="border:none;  background-color: #f2f2f2;">
+                                <b>Invoice Ready</b><br>
+                            </td>
+                            <td name="QbReady" style="border:none;  background-color: #f2f2f2;">
+                                <b>Qb Ready</b><br>
+                            </td>
+                            <td style="border:none;  background-color: #f2f2f2;"></td>
+                            <td style="border:none;  background-color: #f2f2f2;"></td>
+                        </tr>
+                        </tr>
                         <tr>
                             <td style="border:none;"></td>
                             <td style="border:none;"></td>
-                            <td name = "Approved" style="border:none;">
-                            <b>Approved -</b><br>
+                            <td  name = "Approved" style="border:none;">
                                 {{$order->Approved}}
                             </td>
                             <td name = "Request Shipment" style="border:none;">
-                                <b>Request Shipment</b><br>
                                 {{$order->RequestShipment}}
                             </td>
                             <td name = "Shipment Ready" style="border:none;">
-                                <b>Shipment Ready</b><br>
                                 {{$order->ShipmentReady}}
                             </td>
                             <td name = "Request Invoice" style="border:none;">
-                                <b>Request Invoice</b><br>
                                 {{$order->RequestInvoice}}
                             </td>
                             <td name = "InvoiceReady" style="border:none;">
-                                <b>Invoice Ready</b><br>
                                 {{$order->InvoiceReady}}
                             </td>
                             <td name="QbReady" style="border:none;">
-                                <b>Qb Ready</b><br>
                                 {{$order->QbReady}}
                             </td>
                             <td style="border:none;"></td>
