@@ -50,7 +50,7 @@
                         <td>{{$order->StoreName}}</td>
                         <td>
                             <?php $priceForm = function($price){
-                            return number_format($price, 2, ",", ".");
+                            return number_format($price, 2, ".", ",");
                             } 
                             ?>
                             US$ {{$priceForm($order->OrderTotal)}}
@@ -58,7 +58,7 @@
                         <!--ORDER STATUS BUTTON-->
                         <?php 
                         if ($order->OrderStatusId == "Pending"){
-                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="">'.$order->OrderStatusId.'</a></td>';
                         }
                         else if ($order->OrderStatusId == "Processing"){
                             echo '<td><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
