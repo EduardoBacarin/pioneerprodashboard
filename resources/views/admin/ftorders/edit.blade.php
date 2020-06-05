@@ -31,7 +31,7 @@
                     </tr> 
                     <tr style="text-align:center;">
                         <td><b>Customer Name</b></td>
-                        <td>Fernando Motta</td>
+                        <td>{{$orderId->FirstName}} {{$orderId->LastName}}</td>
                         <td><b>Customer Phone</b></td>
                         <td>996832318</td>
                         <td><a href="">View All Customers RMA</a></td>

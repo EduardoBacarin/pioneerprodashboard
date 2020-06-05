@@ -37,12 +37,6 @@
                     <th>Shipping Status</th>
                     <th>Payment Currency</th>
                     <th>Currency Rate</th>
-                    <th>Approved</th>
-                    <th>Request Shipment</th>
-                    <th>Shipment Ready</th>
-                    <th>Request Invoice</th>
-                    <th>Invoice Ready</th>
-                    <th>Qb Ready</th>
                     <th>Save Changes</th>
                 </tr>
             </thead>
@@ -59,34 +53,46 @@
                             ?>
                             US$ {{$priceForm($order->OrderTotal)}}
                         </td>
-                        <td>{{$order->OrderStatusId}}</td>
+                        <td >{{$order->OrderStatusId}}</td>
                         <td>{{$order->ShippingStatusId}}</td>
                         <td>{{$order->PaymentStatusId}}</td>
                         <td>{{$order->CustomerCurrencyCode}}</td>
                         <td>{{$order->CurrencyRate}}</td>
-                        <td name = "Approved">
-                            {{$order->Approved}}
-                            </td>
-                            <td name = "Request Shipment">
-                            {{$order->RequestShipment}}
-                            </td>
-                            <td name = "Shipment Ready">
-                            {{$order->ShipmentReady}}
-                            </td>
-                            <td name = "Request Invoice">
-                            {{$order->RequestInvoice}}
-                            </td>
-                            <td name = "InvoiceReady">
-                            {{$order->InvoiceReady}}
-                            </td>
-                            <td name="QbReady">
-                            {{$order->QbReady}}
-                            </td>
-                            <td>
+                        <td>
                             <div class="Update">
                             <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-sm btn-info">Edit</a>
                             </div>
                             </td>
+                        <tr>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                            <td name = "Approved" style="border:none;">
+                            <b>Approved -</b><br>
+                                {{$order->Approved}}
+                            </td>
+                            <td name = "Request Shipment" style="border:none;">
+                                <b>Request Shipment</b><br>
+                                {{$order->RequestShipment}}
+                            </td>
+                            <td name = "Shipment Ready" style="border:none;">
+                                <b>Shipment Ready</b><br>
+                                {{$order->ShipmentReady}}
+                            </td>
+                            <td name = "Request Invoice" style="border:none;">
+                                <b>Request Invoice</b><br>
+                                {{$order->RequestInvoice}}
+                            </td>
+                            <td name = "InvoiceReady" style="border:none;">
+                                <b>Invoice Ready</b><br>
+                                {{$order->InvoiceReady}}
+                            </td>
+                            <td name="QbReady" style="border:none;">
+                                <b>Qb Ready</b><br>
+                                {{$order->QbReady}}
+                            </td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                        </tr>
                     </tr> 
                 @endforeach
 

@@ -121,6 +121,8 @@ class FtordersController extends Controller
                 }
                 $data[] = array(
                     'Id' => $ftorder->OrderId,
+                    'FirstName' => $ftorder->BillingFirstName,
+                    'LastName' => $ftorder->BillingLastName,
                     'CustomerEmail' => $ftorder->CustomerEmail,
                     'StoreName' => $ftorder->StoreName,
                     'OrderTotal' => $ftorder->OrderTotal,
