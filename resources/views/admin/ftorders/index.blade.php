@@ -120,7 +120,7 @@
                             ?>
                         <td>
                             <div class="Update">
-                            <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-sm btn-info">Edit</a>
+                            <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-md btn-info">Edit</a>
                             </div>
                             </td>
 
