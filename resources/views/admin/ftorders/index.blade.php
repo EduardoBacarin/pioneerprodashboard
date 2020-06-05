@@ -27,19 +27,19 @@
 <div class="card">
     <div class="card-body">
 
-        <table class="table table-hover">
+        <table class="table table-hover ">
             <thead>
                 <tr>
-                    <th>Order Id</th>
-                    <th>Customer Email</th>
-                    <th>Store</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                    <th>Paid</th>
-                    <th>Shipping Status</th>
-                    <th>Currency Rate</th>
-                    <th>Amount in Currency</th>
-                    <th>Save Changes</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Order Id</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Customer Email</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Store</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Amount</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Status</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Paid</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Shipping Status</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Currency Rate</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Amount in Currency</th>
+                    <th style="position: sticky; top: 0; background-color: white;">Save Changes</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,14 +55,62 @@
                             ?>
                             US$ {{$priceForm($order->OrderTotal)}}
                         </td>
-                        <td >{{$order->OrderStatusId}}</td>
-                        <td>{{$order->ShippingStatusId}}</td>
-                        <td>{{$order->PaymentStatusId}}</td>
+                        <!--ORDER STATUS BUTTON-->
+                        <?php 
+                        if ($order->OrderStatusId == "Pending"){
+                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                        }
+                        else if ($order->OrderStatusId == "Processing"){
+                            echo '<td><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                        } 
+                        else if ($order->OrderStatusId == "Complete"){
+                            echo '<td><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                        }
+                        else if ($order->OrderStatusId == "Cancelled"){
+                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                        }                       
+                        ?>                        
+                        <!--PAID STATUS BUTTON-->
+                        <?php 
+                        if ($order->PaymentStatusId == "Pending"){
+                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                        }
+                        else if ($order->PaymentStatusId == "Authorized"){
+                            echo '<td><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                        } 
+                        else if ($order->PaymentStatusId == "Paid"){
+                            echo '<td><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                        }
+                        else if ($order->PaymentStatusId == "PartiallyRefunded"){
+                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                        }  
+                        else if ($order->PaymentStatusId == "Refunded"){
+                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                        }  
+                        else if ($order->PaymentStatusId == "Voided"){
+                            echo '<td><a href="#" class="btn btn-dark  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                        }                       
+                        ?> 
+                        <!--SHIPPING STATUS BUTTON-->
+                        <?php 
+                        if ($order->ShippingStatusId == "Partially Shipped"){
+                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                        }
+                        else if ($order->ShippingStatusId == "Shipped"){
+                            echo '<td><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                        } 
+                        else if ($order->ShippingStatusId == "Delivered"){
+                            echo '<td><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                        }
+                        else if ($order->ShippingStatusId == "Not Yet Shipped"){
+                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                        }  
+                        else if ($order->ShippingStatusId == "Shipping Not Required"){
+                            echo '<td><a href="#" class="btn btn-secondary  btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                        }                     
+                        ?>
                         <td>{{$order->CustomerCurrencyCode}} {{$order->CurrencyRate}}</td>
-                            <?php $priceForm = function($price){
-                                return number_format($price, 2, ".", ",");
-                            } 
-                            ?>
+
                             <?php 
                                 if($order->CustomerCurrencyCode === "MXN") {
                                 echo "<td>MXN$ {$priceForm($order->OrderTotal * $order->CurrencyRate)}</td>";
