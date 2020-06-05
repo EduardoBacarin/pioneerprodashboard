@@ -47,7 +47,7 @@
             <table class="table table-hover">
             <tbody>
                     <?php $priceForm = function($price){
-                        return number_format($price, 2, ",", ".");
+                        return number_format($price, 2, ".", ",");
                     } 
                     ?>
                     <tr style="text-align:center;">

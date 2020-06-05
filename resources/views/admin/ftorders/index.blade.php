@@ -3,6 +3,8 @@
 @section('title', 'Orders')
 
 @section('content_header')
+
+
     <h1>
         Fleet Things Orders 
     <a href="{{route('ftorders.save')}}" class="btn btn-sm btn-success">Update Orders</a>
@@ -35,8 +37,8 @@
                     <th>Status</th>
                     <th>Paid</th>
                     <th>Shipping Status</th>
-                    <th>Payment Currency</th>
                     <th>Currency Rate</th>
+                    <th>Amount in Currency</th>
                     <th>Save Changes</th>
                 </tr>
             </thead>
@@ -56,8 +58,18 @@
                         <td >{{$order->OrderStatusId}}</td>
                         <td>{{$order->ShippingStatusId}}</td>
                         <td>{{$order->PaymentStatusId}}</td>
-                        <td>{{$order->CustomerCurrencyCode}}</td>
-                        <td>{{$order->CurrencyRate}}</td>
+                        <td>{{$order->CustomerCurrencyCode}} {{$order->CurrencyRate}}</td>
+                            <?php $priceForm = function($price){
+                                return number_format($price, 2, ".", ",");
+                            } 
+                            ?>
+                            <?php 
+                                if($order->CustomerCurrencyCode === "MXN") {
+                                echo "<td>MXN$ {$priceForm($order->OrderTotal * $order->CurrencyRate)}</td>";
+                                }else{
+                                    echo "<td>USD$ {$priceForm($order->OrderTotal)}</td>";
+                                }
+                            ?>
                         <td>
                             <div class="Update">
                             <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-sm btn-info">Edit</a>
