@@ -55,7 +55,10 @@ class FtordersController extends Controller
         
         foreach($ftorders as $ftorder) {
             
-            if (DB::table('ftorders')->where('Id', $ftorder->OrderId)->doesntExist()) {
+//Se a tabela estiver em branco, tem que colocar "doesntExist" no lugar de "exists"
+//Se tiver dados, tem que deixar "exists" senão, não atualiza os status das ordens.
+
+            if (DB::table('ftorders')->where('Id', $ftorder->OrderId)->exists()) {
                 switch ($ftorder->OrderStatusId){
                     case 10: 
                         $ftorder->OrderStatusId = "Pending";
