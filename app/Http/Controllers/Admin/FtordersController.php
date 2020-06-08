@@ -55,10 +55,7 @@ class FtordersController extends Controller
         
         foreach($ftorders as $ftorder) {
             
-            if (DB::table('ftorders')->where('Id', $ftorder->OrderId)->doesntExist())
-            ///$_OrderStatusId = 10;
-            //var_dump($ftorder->OrderStatusId);
-            //die();
+            if (DB::table('ftorders')->where('Id', $ftorder->OrderId)->doesntExist()) {
                 switch ($ftorder->OrderStatusId){
                     case 10: 
                         $ftorder->OrderStatusId = "Pending";
@@ -132,48 +129,46 @@ class FtordersController extends Controller
                     'CustomerCurrencyCode' => $ftorder->CustomerCurrencyCode,
                     'CurrencyRate' => $ftorder->CurrencyRate
                 );
-        
-    
-        //print(sizeof($data));
-        //var_dump($data);
-        //die();
-        if(sizeof($data)>0) {
-            $ftorders = Ftorder::updateOrInsert(
-                [
-                'Id' => $ftorder->OrderId
-                ],
-                [
-                'FirstName' => $ftorder->BillingFirstName,
-                'LastName' => $ftorder->BillingLastName,
-                'CustomerEmail' => $ftorder->CustomerEmail,
-                'StoreName' => $ftorder->StoreName,
-                'OrderTotal' => $ftorder->OrderTotal,
-                'OrderStatusId' => $ftorder->OrderStatusId,
-                'ShippingStatusId' => $ftorder->ShippingStatusId,
-                'PaymentStatusId' => $ftorder->PaymentStatusId,
-                'CustomerCurrencyCode' => $ftorder->CustomerCurrencyCode,
-                'CurrencyRate' => $ftorder->CurrencyRate
-                ]
-            );
-            //$ftorders->save();
-            //DB::table('ftorders')->updateOrInsert($data);
-        
-            $qty = $request['qtd'] ?: 10;
-            $page = $request['page'] ?: 1;
-    
-            Paginator::currentPageResolver (function() use ($page) {
-                return $page;
-            });
-    
-            $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
-            $orders = $orders->appends(Request::capture()->except('page')); 
+
+                if(sizeof($data)>0) {
+                    $ftorders = Ftorder::updateOrInsert(
+                        [
+                        'Id' => $ftorder->OrderId
+                        ],
+                        [
+                        'FirstName' => $ftorder->BillingFirstName,
+                        'LastName' => $ftorder->BillingLastName,
+                        'CustomerEmail' => $ftorder->CustomerEmail,
+                        'StoreName' => $ftorder->StoreName,
+                        'OrderTotal' => $ftorder->OrderTotal,
+                        'OrderStatusId' => $ftorder->OrderStatusId,
+                        'ShippingStatusId' => $ftorder->ShippingStatusId,
+                        'PaymentStatusId' => $ftorder->PaymentStatusId,
+                        'CustomerCurrencyCode' => $ftorder->CustomerCurrencyCode,
+                        'CurrencyRate' => $ftorder->CurrencyRate
+                        ]
+                    );
+            
+                    $qty = $request['qtd'] ?: 10;
+                    $page = $request['page'] ?: 1;
+            
+                    Paginator::currentPageResolver (function() use ($page) {
+                        return $page;
+                    });
+            
+                    $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
+                    $orders = $orders->appends(Request::capture()->except('page'));
+                        
+                } 
+            }
         }
+        if(sizeof($data)>0) {
+            return view('admin.ftorders.index', compact('orders'));
+        } else {
+            return redirect('painel/ftorders'); 
+        }   
+        
     }
-    return view('admin.ftorders.index', compact('orders')); 
-}
-
-    
-
     
     /**
      * Show the form for creating a new resource.
