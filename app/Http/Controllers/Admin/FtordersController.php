@@ -138,7 +138,25 @@ class FtordersController extends Controller
         //var_dump($data);
         //die();
         if(sizeof($data)>0) {
-            DB::table('ftorders')->insertOrIgnore($data);
+            $ftorders = Ftorder::updateOrInsert(
+                [
+                'Id' => $ftorder->OrderId
+                ],
+                [
+                'FirstName' => $ftorder->BillingFirstName,
+                'LastName' => $ftorder->BillingLastName,
+                'CustomerEmail' => $ftorder->CustomerEmail,
+                'StoreName' => $ftorder->StoreName,
+                'OrderTotal' => $ftorder->OrderTotal,
+                'OrderStatusId' => $ftorder->OrderStatusId,
+                'ShippingStatusId' => $ftorder->ShippingStatusId,
+                'PaymentStatusId' => $ftorder->PaymentStatusId,
+                'CustomerCurrencyCode' => $ftorder->CustomerCurrencyCode,
+                'CurrencyRate' => $ftorder->CurrencyRate
+                ]
+            );
+            //$ftorders->save();
+            //DB::table('ftorders')->updateOrInsert($data);
         
             $qty = $request['qtd'] ?: 10;
             $page = $request['page'] ?: 1;
