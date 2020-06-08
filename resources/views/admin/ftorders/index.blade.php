@@ -84,7 +84,7 @@
                             echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         }  
                         else if ($order->PaymentStatusId == "Refunded"){
-                            echo '<td> style="border:none;  background-color: #f2f2f2;"<a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         }  
                         else if ($order->PaymentStatusId == "Voided"){
                             echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-dark  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';

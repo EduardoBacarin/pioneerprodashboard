@@ -15,6 +15,7 @@ use GuzzleHttp\Client;
 class FtordersController extends Controller
 {
     public function __construct() {
+        header('Access-Control-Allow-Origin: *');
         $this->middleware('auth');
     }
     /**
@@ -55,10 +56,6 @@ class FtordersController extends Controller
         
         foreach($ftorders as $ftorder) {
             
-//Se a tabela estiver em branco, tem que colocar "doesntExist" no lugar de "exists"
-//Se tiver dados, tem que deixar "exists" senão, não atualiza os status das ordens.
-
-            if (DB::table('ftorders')->where('Id', $ftorder->OrderId)->exists()) {
                 switch ($ftorder->OrderStatusId){
                     case 10: 
                         $ftorder->OrderStatusId = "Pending";
@@ -160,10 +157,8 @@ class FtordersController extends Controller
                     });
             
                     $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
-                    $orders = $orders->appends(Request::capture()->except('page'));
-                        
+                    $orders = $orders->appends(Request::capture()->except('page'));                       
                 } 
-            }
         }
         if(sizeof($data)>0) {
             return view('admin.ftorders.index', compact('orders'));
