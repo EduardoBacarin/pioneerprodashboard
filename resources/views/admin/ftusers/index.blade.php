@@ -27,11 +27,11 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Customer e-Mail</th>
-                    <th>Address e-Mail</th>
-                    <th>Address 1</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Id</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Name</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Customer E-mail</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Address E-mail</th>
+                    <th style="position: sticky; top: 0; background-color: #b7d7e8;">Address 1</th>
                 </tr>
             </thead>
             <tbody>
