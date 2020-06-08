@@ -132,7 +132,7 @@ class FtordersController extends Controller
                     'CustomerCurrencyCode' => $ftorder->CustomerCurrencyCode,
                     'CurrencyRate' => $ftorder->CurrencyRate
                 );
-        
+            
     
         //print(sizeof($data));
         //var_dump($data);
@@ -169,6 +169,7 @@ class FtordersController extends Controller
             $orders = $orders->appends(Request::capture()->except('page')); 
         }
     }
+
     return view('admin.ftorders.index', compact('orders')); 
 }
 
