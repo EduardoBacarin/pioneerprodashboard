@@ -45,10 +45,10 @@
             <tbody>
                 @foreach ($orders as $order)  
                     <tr>
-                        <td><a href="https://shop.fleetthings.com/Admin/Order/Edit/{{$order->Id}}"  target="_blank">{{$order->Id}}</a></td>
-                        <td>{{$order->CustomerEmail}}</td>
-                        <td>{{$order->StoreName}}</td>
-                        <td>
+                        <td style="border:none;  background-color: #f2f2f2;"><a href="https://shop.fleetthings.com/Admin/Order/Edit/{{$order->Id}}"  target="_blank">{{$order->Id}}</a></td>
+                        <td style="border:none;  background-color: #f2f2f2;">{{$order->CustomerEmail}}</td>
+                        <td style="border:none;  background-color: #f2f2f2;">{{$order->StoreName}}</td>
+                        <td style="border:none;  background-color: #f2f2f2;">
                             <?php $priceForm = function($price){
                             return number_format($price, 2, ".", ",");
                             } 
@@ -58,67 +58,67 @@
                         <!--ORDER STATUS BUTTON-->
                         <?php 
                         if ($order->OrderStatusId == "Pending"){
-                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="">'.$order->OrderStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="">'.$order->OrderStatusId.'</a></td>';
                         }
                         else if ($order->OrderStatusId == "Processing"){
-                            echo '<td><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
                         } 
                         else if ($order->OrderStatusId == "Complete"){
-                            echo '<td><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
                         }
                         else if ($order->OrderStatusId == "Cancelled"){
-                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->OrderStatusId.'</a></td>';
                         }                       
                         ?>                        
                         <!--PAID STATUS BUTTON-->
                         <?php 
                         if ($order->PaymentStatusId == "Pending"){
-                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         }
                         else if ($order->PaymentStatusId == "Authorized"){
-                            echo '<td><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         } 
                         else if ($order->PaymentStatusId == "Paid"){
-                            echo '<td><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         }
                         else if ($order->PaymentStatusId == "PartiallyRefunded"){
-                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         }  
                         else if ($order->PaymentStatusId == "Refunded"){
-                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                            echo '<td> style="border:none;  background-color: #f2f2f2;"<a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         }  
                         else if ($order->PaymentStatusId == "Voided"){
-                            echo '<td><a href="#" class="btn btn-dark  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-dark  btn-sm disabled" role="button" aria-disabled="true">'.$order->PaymentStatusId.'</a></td>';
                         }                       
                         ?> 
                         <!--SHIPPING STATUS BUTTON-->
                         <?php 
                         if ($order->ShippingStatusId == "Partially Shipped"){
-                            echo '<td><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-warning btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
                         }
                         else if ($order->ShippingStatusId == "Shipped"){
-                            echo '<td><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-primary btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
                         } 
                         else if ($order->ShippingStatusId == "Delivered"){
-                            echo '<td><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-success btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
                         }
                         else if ($order->ShippingStatusId == "Not Yet Shipped"){
-                            echo '<td><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-danger  btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
                         }  
                         else if ($order->ShippingStatusId == "Shipping Not Required"){
-                            echo '<td><a href="#" class="btn btn-secondary  btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
+                            echo '<td style="border:none;  background-color: #f2f2f2;"><a href="#" class="btn btn-secondary  btn-sm disabled" role="button" aria-disabled="true">'.$order->ShippingStatusId.'</a></td>';
                         }                     
                         ?>
-                        <td>{{$order->CustomerCurrencyCode}} {{$order->CurrencyRate}}</td>
+                        <td style="border:none;  background-color: #f2f2f2;">{{$order->CustomerCurrencyCode}} {{$order->CurrencyRate}}</td>
 
                             <?php 
                                 if($order->CustomerCurrencyCode === "MXN") {
-                                echo "<td>MXN$ {$priceForm($order->OrderTotal * $order->CurrencyRate)}</td>";
+                                echo "<td style='border:none;  background-color: #f2f2f2;'>MXN$ {$priceForm($order->OrderTotal * $order->CurrencyRate)}</td>";
                                 }else{
-                                    echo "<td>USD$ {$priceForm($order->OrderTotal)}</td>";
+                                    echo "<td style='border:none;  background-color: #f2f2f2;'>USD$ {$priceForm($order->OrderTotal)}</td>";
                                 }
                             ?>
-                        <td>
+                        <td style="border:none;  background-color: #f2f2f2;">
                             <div class="Update">
                             <a href="{{route('ftorders.edit', $order->Id)}}" class="btn btn-md btn-info">Edit</a>
                             </div>
@@ -126,28 +126,28 @@
 
                         <tr>
                         <tr>
-                            <td style="border:none;  background-color: #f2f2f2;"></td>
-                            <td style="border:none;  background-color: #f2f2f2;"></td>
-                            <td  name = "Approved" style="border:none;  background-color: #f2f2f2;">
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
+                            <td  name = "Approved" style="border:none;">
                             <b>Approved</b><br>
                             </td>
-                            <td name = "Request Shipment" style="border:none;  background-color: #f2f2f2;">
+                            <td name = "Request Shipment" style="border:none;">
                                 <b>Request Shipment</b><br>
                             </td>
-                            <td name = "Shipment Ready" style="border:none;  background-color: #f2f2f2;">
+                            <td name = "Shipment Ready" style="border:none;">
                                 <b>Shipment Ready</b><br>
                             </td>
-                            <td name = "Request Invoice" style="border:none;  background-color: #f2f2f2;">
+                            <td name = "Request Invoice" style="border:none;">
                                 <b>Request Invoice</b><br>
                             </td>
-                            <td name = "InvoiceReady" style="border:none;  background-color: #f2f2f2;">
+                            <td name = "InvoiceReady" style="border:none;">
                                 <b>Invoice Ready</b><br>
                             </td>
-                            <td name="QbReady" style="border:none;  background-color: #f2f2f2;">
+                            <td name="QbReady" style="border:none;">
                                 <b>Qb Ready</b><br>
                             </td>
-                            <td style="border:none;  background-color: #f2f2f2;"></td>
-                            <td style="border:none;  background-color: #f2f2f2;"></td>
+                            <td style="border:none;"></td>
+                            <td style="border:none;"></td>
                         </tr>
                         </tr>
                         <tr>
