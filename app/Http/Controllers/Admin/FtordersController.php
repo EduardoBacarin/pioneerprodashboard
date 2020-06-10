@@ -353,4 +353,13 @@ class FtordersController extends Controller
     {
         //
     }
+
+    public function ajax()
+    {
+        $orders = Ftorder::all();
+        $paymentstatus = $orders->sortBy('PaymentStatusId')->pluck('PaymentStatusId')->unique();
+        
+        
+        return view('admin.ftorders.index', compact('paymentstatus'));
+    }
 }
