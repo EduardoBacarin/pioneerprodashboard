@@ -59,4 +59,5 @@ class SettingController extends Controller
             'textcolor' => ['string', 'regex:/#[A-Z0-9]{6}/i']
         ]);
     }
+    
 }

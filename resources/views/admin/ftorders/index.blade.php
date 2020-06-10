@@ -4,12 +4,13 @@
 
 @section('content_header')
 
-
     <h1>
         Fleet Things Orders 
-    <a href="{{route('ftorders.save')}}" class="btn btn-sm btn-success">Update Orders</a>
+    <form action="{{route('ftorders.save')}}" method="POST">
+    <a href="{{route('ftorders.save')}}" class="btn btn-sm btn-success" name="click">Update Orders</a>
+    </form>
     </h1>
-
+        
     <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
