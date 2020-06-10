@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Ftorder;
+use App\Setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\Paginator;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp;
 use GuzzleHttp\Client;
+use DateTime;
 
 class FtordersController extends Controller
 {
@@ -116,6 +118,7 @@ class FtordersController extends Controller
                     $ftorder->PaymentStatusId = " ";
                     break;
                 }
+                
                 $data[] = array(
                     'Id' => $ftorder->OrderId,
                     'FirstName' => $ftorder->BillingFirstName,
@@ -127,9 +130,9 @@ class FtordersController extends Controller
                     'ShippingStatusId' => $ftorder->ShippingStatusId,
                     'PaymentStatusId' => $ftorder->PaymentStatusId,
                     'CustomerCurrencyCode' => $ftorder->CustomerCurrencyCode,
-                    'CurrencyRate' => $ftorder->CurrencyRate
+                    'CurrencyRate' => $ftorder->CurrencyRate,
                 );
-
+                
                 if(sizeof($data)>0) {
                     $ftorders = Ftorder::updateOrInsert(
                         [
@@ -145,23 +148,32 @@ class FtordersController extends Controller
                         'ShippingStatusId' => $ftorder->ShippingStatusId,
                         'PaymentStatusId' => $ftorder->PaymentStatusId,
                         'CustomerCurrencyCode' => $ftorder->CustomerCurrencyCode,
-                        'CurrencyRate' => $ftorder->CurrencyRate
+                        'CurrencyRate' => $ftorder->CurrencyRate,
                         ]
                     );
-            
+                    $ftupdate = Setting::updateOrInsert(
+                        [
+                        'id' => 6
+                        ],
+                        [
+                        'content' => new DateTime("now")
+                        ]    
+                    );
+                    
                     $qty = $request['qtd'] ?: 10;
                     $page = $request['page'] ?: 1;
             
                     Paginator::currentPageResolver (function() use ($page) {
                         return $page;
                     });
-            
+                    
+                    $settings = DB::table('settings')->get();
                     $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
-                    $orders = $orders->appends(Request::capture()->except('page'));                       
+                    $orders = $orders->appends(Request::capture()->except('page'));    
                 } 
         }
         if(sizeof($data)>0) {
-            return view('admin.ftorders.index', compact('orders'));
+            return view('admin.ftorders.index', compact('orders'),);
         } else {
             return redirect('painel/ftorders'); 
         }   
@@ -199,7 +211,7 @@ class FtordersController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

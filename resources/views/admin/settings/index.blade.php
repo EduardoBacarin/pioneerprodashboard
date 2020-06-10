@@ -55,6 +55,12 @@
                         <input type="color" name="textcolor" value="{{ $settings['textcolor'] }}" class="form-control" style="width: 70px">
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Last Order Update</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="orderupdate" value="{{ $settings['order_update'] }}" class="form-control" style="width: 200px">
+                    </div>
+                </div>
 
 
                 <div class="form-group row">
