@@ -10,7 +10,13 @@
     <a href="{{route('ftorders.save')}}" class="btn btn-sm btn-success" name="click">Update Orders</a>
     </form>
     </h1>
-        
+        <?php
+        foreach ($settings as $setting) {
+            if ($setting->id === 6) {
+                echo "Last Update at: " . $setting->content;
+            }
+        }
+        ?>
     <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
