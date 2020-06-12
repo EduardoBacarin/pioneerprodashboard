@@ -12,11 +12,15 @@
     </h1>
 
     <?php
-    var_dump($settings);
+
+    foreach($settings as $setting) {
+        if($setting->id === 6) {
+            echo "Last Update: " .$setting->content;
+        }
+    }
     ?>
-        @foreach ($settings as $setting)
-            {{$setting->content}}
-        @endforeach
+
+ 
 @section('content')
         
     <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
@@ -34,18 +38,7 @@
 
 <div class="card">
     <div class="card-body">
-    <table>
-        <tr>
-            <td>
-                <select data-column="0" class="form-control filter-select">
-                    <option value="Select Payment Status"></option>
-                    @foreach ($paymentstatus as $paymentstat)                    
-                        <option value="{{$paymentstat}}">{{$paymentstat}}</option>
-                    @endforeach
-                </select>
-            </td>
-        </tr>
-    </table>
+
         <table class="table table-hover ">
             <thead>
                 <tr>
@@ -207,32 +200,3 @@
 
 @endsection
 
-@section('javascripts')
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTAbles.js"></script>
-
-<script>
-    $(document).ready(function (){
-        var table = $('#datatable').DataTable({
-            'processing': true,
-            'serverSide': true,
-            'ajax': "{{route('ftorders.filter')}}",
-            'columns': [
-                {'data': 'paymentstatus'}
-            ],
-        });
-
-        $('.filter-input').keyup(function() {
-            table.column( $(this).data('column') )
-                .search( $(this).val() )
-                .draw();
-        });
-
-        $('.filter-select').change(function() {
-            table.column( $(this).data('column') )
-                .search( $(this).val() )
-                .draw();
-        });
-
-    })
-</script>
-@endsection

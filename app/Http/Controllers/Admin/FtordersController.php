@@ -37,8 +37,9 @@ class FtordersController extends Controller
         $settings = DB::table('settings')->get();
         $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
         $orders = $orders->appends(Request::capture()->except('page')); 
+        $paymentstatus = $orders->sortBy('PaymentStatusId')->pluck('PaymentStatusId')->unique();
 
-        return view('admin.ftorders.index', compact('orders', 'settings'));  
+        return view('admin.ftorders.index', compact('orders', 'settings', 'paymentstatus'));  
     
     }
 
