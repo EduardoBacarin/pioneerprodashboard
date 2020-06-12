@@ -34,10 +34,11 @@ class FtordersController extends Controller
             return $page;
         });
 
+        $settings = DB::table('settings')->get();
         $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
         $orders = $orders->appends(Request::capture()->except('page')); 
 
-        return view('admin.ftorders.index', compact('orders'));  
+        return view('admin.ftorders.index', compact('orders', 'settings'));  
     
     }
 
@@ -173,7 +174,7 @@ class FtordersController extends Controller
                 } 
         }
         if(sizeof($data)>0) {
-            return view('admin.ftorders.index', compact('orders'),);
+            return view('admin.ftorders.index', compact('orders', 'settings'),);
         } else {
             return redirect('painel/ftorders'); 
         }   

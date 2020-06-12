@@ -10,6 +10,14 @@
     <a href="{{route('ftorders.save')}}" class="btn btn-sm btn-success" name="click">Update Orders</a>
     </form>
     </h1>
+
+    <?php
+    var_dump($settings);
+    ?>
+        @foreach ($settings as $setting)
+            {{$setting->content}}
+        @endforeach
+@section('content')
         
     <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -24,7 +32,6 @@
 
 @endsection
 
-@section('content')
 <div class="card">
     <div class="card-body">
 
