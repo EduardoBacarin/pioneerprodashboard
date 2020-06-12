@@ -373,7 +373,6 @@ class FtordersController extends Controller
         $orders = Ftorder::all();
         $paymentstatus = $orders->sortBy('PaymentStatusId')->pluck('PaymentStatusId')->unique();
         
-        
         return view('admin.ftorders.index', compact('paymentstatus'));
     }
 }
