@@ -41,7 +41,7 @@ class FtordersController extends Controller
         $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
         $orders = $orders->appends(Request::capture()->except('page')); 
 
-        return view('admin.ftorders.index', compact('search', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('searchStoreName', 'searchOrderStatus', 'search', 'orders', 'settings'));  
     
     }
 
@@ -382,10 +382,17 @@ class FtordersController extends Controller
             return $page;
         });
 
-        $search = $request->get('searchStoreName', 'searchOrderStatus');
+        $searchStoreName = $request->get('searchStoreName');
 
-            $orders = Ftorder::Where('StoreName', 'LIKE', '%'.$search.'%' )
-            ->orWhere('OrderStatusId', 'LIKE', '%'.$search.'%' )
+            $orders = Ftorder::where('StoreName', 'LIKE', '%'.$searchStoreName.'%')
+            ->orderBy('Id','desc')
+            ->paginate($qty);
+            
+            $orders = $orders->appends(Request::capture()->except('page'));
+
+        $searchOrderStatus = $request->get('searchOrderStatus');
+
+            $orders = Ftorder::where('OrderStatusId', 'LIKE', '%'.$searchOrderStatus.'%')
             ->orderBy('Id','desc')
             ->paginate($qty);
             
@@ -393,7 +400,7 @@ class FtordersController extends Controller
 
         $settings = DB::table('settings')->get();
 
-        return view('admin.ftorders.index', compact('search', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('searchStoreName', 'searchOrderStatus', 'orders', 'settings'));  
     }
 
 }
