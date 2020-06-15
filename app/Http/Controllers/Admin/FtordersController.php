@@ -387,7 +387,7 @@ class FtordersController extends Controller
 
         $searchOrderId = $request->get('searchOrderId');
 
-            $orders = Ftorder::where('Id', 'LIKE', '%'.$searchOrderId.'%')
+            $orders = Ftorder::where('Id', $searchOrderId)
             ->orderBy('Id','desc')
             ->paginate($qty);
             
@@ -410,7 +410,7 @@ class FtordersController extends Controller
 
         $searchStoreName = $request->get('searchStoreName');
 
-            $orders = Ftorder::where('StoreName', 'LIKE', '%'.$searchStoreName.'%')
+            $orders = Ftorder::where('StoreName', $searchStoreName)
             ->orderBy('Id','desc')
             ->paginate($qty);
             
@@ -434,7 +434,7 @@ class FtordersController extends Controller
 
         $searchOrderStatus = $request->get('searchOrderStatus');
 
-            $orders = Ftorder::where('OrderStatusId', 'LIKE', '%'.$searchOrderStatus.'%')
+            $orders = Ftorder::where('OrderStatusId', $searchOrderStatus)
             ->orderBy('Id','desc')
             ->paginate($qty);
             
@@ -458,7 +458,7 @@ class FtordersController extends Controller
 
         $searchPaymentStatus = $request->get('searchPaymentStatus');
 
-            $orders = Ftorder::where('PaymentStatusId', 'LIKE', '%'.$searchPaymentStatus.'%')
+            $orders = Ftorder::where('PaymentStatusId',$searchPaymentStatus)
             ->orderBy('Id','desc')
             ->paginate($qty);
             
@@ -481,7 +481,7 @@ class FtordersController extends Controller
 
         $searchShippingStatus = $request->get('searchShippingStatus');
 
-            $orders = Ftorder::where('ShippingStatusId', 'LIKE', '%'.$searchShippingStatus.'%')
+            $orders = Ftorder::where('ShippingStatusId', $searchShippingStatus)
             ->orderBy('Id','desc')
             ->paginate($qty);
             
