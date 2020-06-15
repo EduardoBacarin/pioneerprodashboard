@@ -243,7 +243,7 @@ class FtordersController extends Controller
     {
 
         if($file = $request->file('PaymentReceipt')) {
-            $name = $file->getCLientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('receipts', $name)) {
                 $data = $request->only([
                     'PaymentReceipt'
@@ -261,7 +261,7 @@ class FtordersController extends Controller
         }
 
         if($file = $request->file('TrackingNumber')) {
-            $name = $file->getCLientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('tracking', $name)) {
                 $data = $request->only([
                     'TrackingNumber'
@@ -272,7 +272,7 @@ class FtordersController extends Controller
         }
 
         if($file = $request->file('ShippedImages')) {
-            $name = $file->getCLientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('shippedimages', $name)) {
                 $data = $request->only([
                     'ShippedImages'
@@ -283,7 +283,7 @@ class FtordersController extends Controller
         }
 
         if($file = $request->file('Imeis')) {
-            $name = $file->getCLientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('imeis', $name)) {
                 $data = $request->only([
                     'Imeis'
@@ -306,7 +306,7 @@ class FtordersController extends Controller
         }
 
         if($file = $request->file('InvoiceFile')) {
-            $name = $file->getCLientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('invoices', $name)) {
                 $data = $request->only([
                     'InvoiceFile'
@@ -316,7 +316,7 @@ class FtordersController extends Controller
             };
         };
         if($file = $request->file('VentaFile')) {
-            $name =$file->getClientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('ventas', $name)) {
                 $data = $request->only([
                     'VentaFile'
@@ -326,7 +326,7 @@ class FtordersController extends Controller
             };
         }
         if($file = $request->file('ProfitFile')) {
-            $name =$file->getClientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('profits', $name)) {
                 $data = $request->only([
                     'ProfitFile'
@@ -336,7 +336,7 @@ class FtordersController extends Controller
             };
         }
         if($file = $request->file('PoFile')) {
-            $name =$file->getClientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('pofiles', $name)) {
                 $data = $request->only([
                     'PoFile'
@@ -346,7 +346,7 @@ class FtordersController extends Controller
             };
         }
         if($file = $request->file('QbInvoice')) {
-            $name =$file->getClientOriginalName();
+            $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('qbinvoices', $name)) {
                 $data = $request->only([
                     'QbInvoice'
