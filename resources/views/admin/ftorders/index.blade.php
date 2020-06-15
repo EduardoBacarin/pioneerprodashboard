@@ -24,12 +24,16 @@
 @section('content')
 <div class="card">
     <div class="card-body" >
+    <table>
+    <tr>
+    <td>
     <form action="{{route('ftorders.searchorderid')}}" method="POST" class= "form form-inline">
         @csrf
             <input type="text" name= "searchOrderId" value = "{{$searchOrderId}}" placeholder = "Order Id">
             <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
         </form>
-
+    </td>
+    <td>
         <form action="{{route('ftorders.searchstorename')}}" method="POST" class= "form form-inline">
         @csrf
             <select name="searchStoreName" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -40,7 +44,8 @@
             </select>
             <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
         </form>
-
+    </td>
+    <td>
         <form action="{{route('ftorders.searchorderstatus')}}" method="POST" class= "form form-inline">
         @csrf
             <select name="searchOrderStatus" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -49,11 +54,12 @@
                 <option type="search" value="Pending">Pending</option>
                 <option type="search" value="Cancelled">Cancelled</option>
             </select>
-
+            
             <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
 
         </form>
-
+    </td>
+    <td>
         <form action="{{route('ftorders.searchpaymentstatus')}}" method="POST" class= "form form-inline">
         @csrf
             <select name="searchPaymentStatus" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -69,7 +75,8 @@
             <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
 
         </form>
-
+    </td>
+    <td>
         <form action="{{route('ftorders.searchshippingstatus')}}" method="POST" class= "form form-inline">
         @csrf
             <select name="searchShippingStatus" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
@@ -82,8 +89,10 @@
             </select>
 
             <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
-
+    </td>        
         </form>
+        </tr>
+        </table>
          <br>
         <table class="table table-hover ">
             <thead>
