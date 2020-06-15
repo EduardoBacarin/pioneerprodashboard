@@ -24,48 +24,67 @@
 @section('content')
 <div class="card">
     <div class="card-body" >
-        <form action="{{route('ftorders.search')}}" method="POST" class= "form form-inline">
+    <form action="{{route('ftorders.searchorderid')}}" method="POST" class= "form form-inline">
         @csrf
-            <input type="search" name="search" class="form-control" value = "{{$search}}"placeholder ="Order Id">&nbsp &nbsp
+            <input type="text" name= "searchOrderId" value = "{{$searchOrderId}}" placeholder = "Order Id">
+            <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+        </form>
 
-            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <form action="{{route('ftorders.searchstorename')}}" method="POST" class= "form form-inline">
+        @csrf
+            <select name="searchStoreName" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                 <option selected>Store Name</option>
-                <option type="search" name="search" value="{{$search}}">Fleetthings</option>
-                <option type="search" name="search" value="{{$search}}">FleetThings Mexico</option>
-                <option type="search" name="search" value="{{$search}}">TopFlyAmericas</option>
+                <option type="search" value="Fleetthings">Fleetthings</option>
+                <option type="search" value="FleetThings Mexico">FleetThings Mexico</option>
+                <option type="search" value="TopFlyAmericas">TopFlyAmericas</option>
+            </select>
+            <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+        </form>
+
+        <form action="{{route('ftorders.searchorderstatus')}}" method="POST" class= "form form-inline">
+        @csrf
+            <select name="searchOrderStatus" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Order Status</option>
+                <option type="search" value="Complete">Complete</option>
+                <option type="search" value="Pending">Pending</option>
+                <option type="search" value="Cancelled">Cancelled</option>
             </select>
 
-            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option value="">Order Status</option>
-                <option type="search" name="search" value="{{$search}}">Pending</option>
-                <option type="search" name="search" value="{{$search}}">Processing</option>
-                <option type="search" name="search" value="{{$search}}">Complete</option>
-                <option type="search" name="search" value="{{$search}}">Cancelled</option>
-            </select>
+            <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
 
-            
-            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                <option selected>Shipping Status</option>
-                <option type="search" name="search" value="{{$search}}">Not Yet Shipped</option>
-                <option type="search" name="search" value="{{$search}}">Shipped</option>
-                <option type="search" name="search" value="{{$search}}">Delivered</option>
-                <option type="search" name="search" value="{{$search}}">Partially Shipped</option>
-                <option type="search" name="search" value="{{$search}}">Shipping Not Required</option>
-            </select>
+        </form>
 
-            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+        <form action="{{route('ftorders.searchpaymentstatus')}}" method="POST" class= "form form-inline">
+        @csrf
+            <select name="searchPaymentStatus" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                 <option selected>Payment Status</option>
-                <option type="search" name="search" value="{{$search}}">Pending</option>
-                <option type="search" name="search" value="{{$search}}">Authorized</option>
-                <option type="search" name="search" value="{{$search}}">Paid</option>
-                <option type="search" name="search" value="{{$search}}">PartiallyRefunded</option>
-                <option type="search" name="search" value="{{$search}}">Refunded</option>
-                <option type="search" name="search" value="{{$search}}">Voided</option>
+                <option type="search" value="Authorized">Authorized</option>
+                <option type="search" value="Pending">Pending</option>
+                <option type="search" value="Paid">Paid</option>
+                <option type="search" value="PartiallyRefunded">PartiallyRefunded</option>
+                <option type="search" value="Refunded">Refunded</option>
+                <option type="search" value="Voided">Voided</option>
             </select>
-            <button type="sumbmit" class="btn btn-info">Search</button>
 
+            <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
 
-        </form> <br>
+        </form>
+
+        <form action="{{route('ftorders.searchshippingstatus')}}" method="POST" class= "form form-inline">
+        @csrf
+            <select name="searchShippingStatus" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Shipping Status</option>
+                <option type="search" value="Shipping Not Required">Shipping Not Required</option>
+                <option type="search" value="Not Yet Shipped">Not Yet Shipped</option>
+                <option type="search" value="Partially Shipped">Partially Shipped</option>
+                <option type="search" value="Shipped">Shipped</option>
+                <option type="search" value="Delivered">Delivered</option>
+            </select>
+
+            <button type="submit" class="btn btn-info"><i class="fas fa-search"></i></button>
+
+        </form>
+         <br>
         <table class="table table-hover ">
             <thead>
                 <tr>

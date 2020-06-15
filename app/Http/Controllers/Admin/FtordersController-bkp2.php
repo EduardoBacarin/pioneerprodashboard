@@ -34,17 +34,14 @@ class FtordersController extends Controller
             return $page;
         });
 
-        $searchOrderId = $request->get('search');
         $searchStoreName = $request->get('search');
         $searchOrderStatus = $request->get('search');
-        $searchPaymentStatus = $request->get('search');
-        $searchShippingStatus = $request->get('search');
         $search = $request->get('search');
         $settings = DB::table('settings')->get();
         $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
         $orders = $orders->appends(Request::capture()->except('page')); 
 
-        return view('admin.ftorders.index', compact('searchOrderId','searchShippingStatus', 'searchPaymentStatus', 'searchStoreName', 'searchOrderStatus', 'search', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('search', 'orders', 'settings'));  
     
     }
 
@@ -246,6 +243,7 @@ class FtordersController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         if($file = $request->file('PaymentReceipt')) {
             $name = $id.'-'.$file->getClientOriginalName();
             if($file->move('receipts', $name)) {
@@ -375,7 +373,7 @@ class FtordersController extends Controller
         //
     }
 
-    public function searchOrderId (Request $request) 
+    public function search (Request $request) 
     {
                             
         $qty = $request['qtd'] ?: 10;
@@ -385,9 +383,10 @@ class FtordersController extends Controller
             return $page;
         });
 
-        $searchOrderId = $request->get('searchOrderId');
+        $search = $request->get('searchStoreName', 'searchOrderStatus');
 
-            $orders = Ftorder::where('Id', 'LIKE', '%'.$searchOrderId.'%')
+            $orders = Ftorder::where('StoreName', 'LIKE', '%'.$search.'%' )
+            ->orWhere('OrderStatusId', 'LIKE', '%'.$search.'%' )
             ->orderBy('Id','desc')
             ->paginate($qty);
             
@@ -395,99 +394,7 @@ class FtordersController extends Controller
 
         $settings = DB::table('settings')->get();
 
-        return view('admin.ftorders.index', compact('searchOrderId', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('search', 'orders', 'settings'));  
     }
-
-    public function searchStoreName (Request $request) 
-    {
-                            
-        $qty = $request['qtd'] ?: 10;
-        $page = $request['page'] ?: 1;
-
-        Paginator::currentPageResolver (function() use ($page) {
-            return $page;
-        });
-
-        $searchStoreName = $request->get('searchStoreName');
-
-            $orders = Ftorder::where('StoreName', 'LIKE', '%'.$searchStoreName.'%')
-            ->orderBy('Id','desc')
-            ->paginate($qty);
-            
-            $orders = $orders->appends(Request::capture()->except('page'));
-
-        $settings = DB::table('settings')->get();
-
-        return view('admin.ftorders.index', compact('searchStoreName', 'orders', 'settings'));  
-    }
-
-    public function searchOrderStatus (Request $request) 
-    {
-                            
-        $qty = $request['qtd'] ?: 10;
-        $page = $request['page'] ?: 1;
-
-        Paginator::currentPageResolver (function() use ($page) {
-            return $page;
-        });
-
-        $searchOrderStatus = $request->get('searchOrderStatus');
-
-            $orders = Ftorder::where('OrderStatusId', 'LIKE', '%'.$searchOrderStatus.'%')
-            ->orderBy('Id','desc')
-            ->paginate($qty);
-            
-            $orders = $orders->appends(Request::capture()->except('page'));
-
-        $settings = DB::table('settings')->get();
-
-        return view('admin.ftorders.index', compact('searchOrderStatus', 'orders', 'settings'));  
-    }
-
-    public function searchPaymentStatus (Request $request) 
-    {
-                            
-        $qty = $request['qtd'] ?: 10;
-        $page = $request['page'] ?: 1;
-
-        Paginator::currentPageResolver (function() use ($page) {
-            return $page;
-        });
-
-        $searchPaymentStatus = $request->get('searchPaymentStatus');
-
-            $orders = Ftorder::where('PaymentStatusId', 'LIKE', '%'.$searchPaymentStatus.'%')
-            ->orderBy('Id','desc')
-            ->paginate($qty);
-            
-            $orders = $orders->appends(Request::capture()->except('page'));
-
-        $settings = DB::table('settings')->get();
-
-        return view('admin.ftorders.index', compact('searchPaymentStatus', 'orders', 'settings'));  
-    }
-    public function searchShippingStatus (Request $request) 
-    {
-                            
-        $qty = $request['qtd'] ?: 10;
-        $page = $request['page'] ?: 1;
-
-        Paginator::currentPageResolver (function() use ($page) {
-            return $page;
-        });
-
-        $searchShippingStatus = $request->get('searchShippingStatus');
-
-            $orders = Ftorder::where('ShippingStatusId', 'LIKE', '%'.$searchShippingStatus.'%')
-            ->orderBy('Id','desc')
-            ->paginate($qty);
-            
-            $orders = $orders->appends(Request::capture()->except('page'));
-
-        $settings = DB::table('settings')->get();
-
-        return view('admin.ftorders.index', compact('searchShippingStatus', 'orders', 'settings'));  
-    }
-
 
 }

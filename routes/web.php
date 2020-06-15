@@ -41,7 +41,11 @@ Route::prefix('painel')->group(function(){
     Route::get('ftorderssave', 'Admin\FtordersController@save')->name('ftorders.save');
     
     //rotas dos filtros
-    Route::post('forderssearch', 'Admin\FtordersController@search')->name('ftorders.search');
+    Route::post('forderssearchOrderId', 'Admin\FtordersController@searchOrderId')->name('ftorders.searchorderid');
+    Route::post('forderssearchStoreName', 'Admin\FtordersController@searchStoreName')->name('ftorders.searchstorename');
+    Route::post('forderssearchOrderStatus', 'Admin\FtordersController@searchOrderStatus')->name('ftorders.searchorderstatus');
+    Route::post('forderssearchPaymentStatus', 'Admin\FtordersController@searchPaymentStatus')->name('ftorders.searchpaymentstatus');
+    Route::post('forderssearchShippingStatus', 'Admin\FtordersController@searchShippingStatus')->name('ftorders.searchshippingstatus');
     //Route::any('ftorders/filter', 'Admin\FtordersController@filter')->name('ftorders.filter');
     
     Route::resource('ftshippings', 'Admin\FtShippingsController');
