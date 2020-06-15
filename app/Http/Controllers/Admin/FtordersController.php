@@ -416,9 +416,10 @@ class FtordersController extends Controller
             
             $orders = $orders->appends(Request::capture()->except('page'));
 
+        $searchOrderId = $request->get('searchOrderId');
         $settings = DB::table('settings')->get();
 
-        return view('admin.ftorders.index', compact('searchStoreName', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('searchOrderId', 'searchStoreName', 'orders', 'settings'));  
     }
 
     public function searchOrderStatus (Request $request) 
@@ -439,9 +440,10 @@ class FtordersController extends Controller
             
             $orders = $orders->appends(Request::capture()->except('page'));
 
+        $searchOrderId = $request->get('searchOrderId');
         $settings = DB::table('settings')->get();
 
-        return view('admin.ftorders.index', compact('searchOrderStatus', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('searchOrderId', 'searchOrderStatus', 'orders', 'settings'));  
     }
 
     public function searchPaymentStatus (Request $request) 
@@ -461,10 +463,11 @@ class FtordersController extends Controller
             ->paginate($qty);
             
             $orders = $orders->appends(Request::capture()->except('page'));
-
+        
+        $searchOrderId = $request->get('searchOrderId');
         $settings = DB::table('settings')->get();
 
-        return view('admin.ftorders.index', compact('searchPaymentStatus', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('searchOrderId', 'searchPaymentStatus', 'orders', 'settings'));  
     }
     public function searchShippingStatus (Request $request) 
     {
@@ -483,10 +486,11 @@ class FtordersController extends Controller
             ->paginate($qty);
             
             $orders = $orders->appends(Request::capture()->except('page'));
-
+        
+        $searchOrderId = $request->get('searchOrderId');
         $settings = DB::table('settings')->get();
 
-        return view('admin.ftorders.index', compact('searchShippingStatus', 'orders', 'settings'));  
+        return view('admin.ftorders.index', compact('searchOrderId', 'searchShippingStatus', 'orders', 'settings'));  
     }
 
 
