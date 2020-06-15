@@ -6,45 +6,66 @@
 
     <h1>
         Fleet Things Orders 
+    </h1>
     <form action="{{route('ftorders.save')}}" method="POST">
     <a href="{{route('ftorders.save')}}" class="btn btn-sm btn-success" name="click">Update Orders</a>
     </form>
-    </h1>
+  
         <?php
         foreach ($settings as $setting) {
             if ($setting->id === 6) {
                 echo "Last Update at: " . $setting->content;
             }
+            
         }
         ?>
-    <form  style="float:right; margin-top: -30px;" class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
-
 @endsection
 
 @section('content')
 <div class="card">
-    <div class="card-body">
-    <table>
-        <tr>
-            <td>
-                <select data-column="0" class="form-control filter-select">
-                    <option value="Select Payment Status"></option>
-                    @foreach ($paymentstatus as $paymentstat)                    
-                        <option value="{{$paymentstat}}">{{$paymentstat}}</option>
-                    @endforeach
-                </select>
-            </td>
-        </tr>
-    </table>
+    <div class="card-body" >
+        <form action="{{route('ftorders.search')}}" method="POST" class= "form form-inline">
+        @csrf
+            <input type="search" name="search" class="form-control" value = "{{$search}}"placeholder ="Order Id"/>&nbsp &nbsp
+
+            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Store Name</option>
+                <option type="search" name="search" value="{{$search}}">Fleetthings</option>
+                <option type="search" name="search" value="{{$search}}">FleetThings Mexico</option>
+                <option type="search" name="search" value="{{$search}}">TopFlyAmericas</option>
+            </select>
+
+            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option value="">Order Status</option>
+                <option type="search" name="search" value="{{$search}}">Pending</option>
+                <option type="search" name="search" value="{{$search}}">Processing</option>
+                <option type="search" name="search" value="{{$search}}">Complete</option>
+                <option type="search" name="search" value="{{$search}}">Cancelled</option>
+            </select>
+
+            
+            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Shipping Status</option>
+                <option type="search" name="search" value="{{$search}}">Not Yet Shipped</option>
+                <option type="search" name="search" value="{{$search}}">Shipped</option>
+                <option type="search" name="search" value="{{$search}}">Delivered</option>
+                <option type="search" name="search" value="{{$search}}">Partially Shipped</option>
+                <option type="search" name="search" value="{{$search}}">Shipping Not Required</option>
+            </select>
+
+            <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                <option selected>Payment Status</option>
+                <option type="search" name="search" value="{{$search}}">Pending</option>
+                <option type="search" name="search" value="{{$search}}">Authorized</option>
+                <option type="search" name="search" value="{{$search}}">Paid</option>
+                <option type="search" name="search" value="{{$search}}">PartiallyRefunded</option>
+                <option type="search" name="search" value="{{$search}}">Refunded</option>
+                <option type="search" name="search" value="{{$search}}">Voided</option>
+            </select>
+            <button type="sumbmit" class="btn btn-info">Search</button>
+
+
+        </form> <br>
         <table class="table table-hover ">
             <thead>
                 <tr>
@@ -204,34 +225,4 @@
 </div>
 
 
-@endsection
-
-@section('javascripts')
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTAbles.js"></script>
-
-<script>
-    $(document).ready(function (){
-        var table = $('#datatable').DataTable({
-            'processing': true,
-            'serverSide': true,
-            'ajax': "{{route('ftorders.filter')}}",
-            'columns': [
-                {'data': 'paymentstatus'}
-            ],
-        });
-
-        $('.filter-input').keyup(function() {
-            table.column( $(this).data('column') )
-                .search( $(this).val() )
-                .draw();
-        });
-
-        $('.filter-select').change(function() {
-            table.column( $(this).data('column') )
-                .search( $(this).val() )
-                .draw();
-        });
-
-    })
-</script>
 @endsection

@@ -39,7 +39,10 @@ Route::prefix('painel')->group(function(){
 
     Route::resource('ftorders', 'Admin\FtordersController');
     Route::get('ftorderssave', 'Admin\FtordersController@save')->name('ftorders.save');
-    Route::any('ftordersfilter', 'Admin\FtordersController@ajax')->name('ftorders.filter');
+    
+    //rotas dos filtros
+    Route::post('forderssearch', 'Admin\FtordersController@search')->name('ftorders.search');
+    //Route::any('ftorders/filter', 'Admin\FtordersController@filter')->name('ftorders.filter');
     
     Route::resource('ftshippings', 'Admin\FtShippingsController');
     

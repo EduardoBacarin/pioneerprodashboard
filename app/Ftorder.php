@@ -12,4 +12,5 @@ class Ftorder extends Model
          'PoFile', 'Qbinvoice', 'created_at', 'updated_at' 
     ];
     protected $table = "ftorders";
+
 }

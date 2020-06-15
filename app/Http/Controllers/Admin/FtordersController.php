@@ -16,7 +16,7 @@ use DateTime;
 
 class FtordersController extends Controller
 {
-    public function __construct() {
+    public function __construct(Request $request) {
         header('Access-Control-Allow-Origin: *');
         $this->middleware('auth');
     }
@@ -34,12 +34,12 @@ class FtordersController extends Controller
             return $page;
         });
 
+        $search = $request->get('search');
         $settings = DB::table('settings')->get();
         $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
         $orders = $orders->appends(Request::capture()->except('page')); 
-        $paymentstatus = $orders->sortBy('PaymentStatusId')->pluck('PaymentStatusId')->unique();
 
-        return view('admin.ftorders.index', compact('orders', 'settings', 'paymentstatus'));  
+        return view('admin.ftorders.index', compact('search', 'orders', 'settings'));  
     
     }
 
@@ -168,14 +168,16 @@ class FtordersController extends Controller
                     Paginator::currentPageResolver (function() use ($page) {
                         return $page;
                     });
-                    
+
+                    $search = $request->get('search');
                     $settings = DB::table('settings')->get();
                     $orders = DB::table('ftorders')->orderBy('Id','desc')->paginate($qty);
-                    $orders = $orders->appends(Request::capture()->except('page'));    
+                    $orders = $orders->appends(Request::capture()->except('page'));
+
                 } 
         }
         if(sizeof($data)>0) {
-            return view('admin.ftorders.index', compact('orders', 'settings'),);
+            return view('admin.ftorders.index', compact('search','orders', 'settings')); 
         } else {
             return redirect('painel/ftorders'); 
         }   
@@ -368,11 +370,31 @@ class FtordersController extends Controller
         //
     }
 
-    public function ajax()
+    public function search (Request $request) 
     {
-        $orders = Ftorder::all();
-        $paymentstatus = $orders->sortBy('PaymentStatusId')->pluck('PaymentStatusId')->unique();
-        
-        return view('admin.ftorders.index', compact('paymentstatus'));
+                            
+        $qty = $request['qtd'] ?: 10;
+        $page = $request['page'] ?: 1;
+
+        Paginator::currentPageResolver (function() use ($page) {
+            return $page;
+        });
+
+        $search = $request->get('search');
+
+            $orders = Ftorder::where('Id', 'LIKE', '%'.$search.'%')
+            ->orWhere('StoreName', 'LIKE', '%'.$search.'%' )
+            ->orWhere('OrderStatusId', 'LIKE', '%'.$search.'%' )
+            ->orWhere('ShippingStatusId', 'LIKE', '%'.$search.'%' )
+            ->orWhere('PaymentStatusId', 'LIKE', '%'.$search.'%' )
+            ->orderBy('Id','desc')
+            ->paginate($qty);
+            
+            $orders = $orders->appends(Request::capture()->except('page'));
+
+        $settings = DB::table('settings')->get();
+
+        return view('admin.ftorders.index', compact('search', 'orders', 'settings'));  
     }
+
 }
