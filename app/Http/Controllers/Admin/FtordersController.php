@@ -241,6 +241,7 @@ class FtordersController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         if($file = $request->file('PaymentReceipt')) {
             $name = $file->getCLientOriginalName();
             if($file->move('receipts', $name)) {
@@ -385,8 +386,6 @@ class FtordersController extends Controller
             $orders = Ftorder::where('Id', 'LIKE', '%'.$search.'%')
             ->orWhere('StoreName', 'LIKE', '%'.$search.'%' )
             ->orWhere('OrderStatusId', 'LIKE', '%'.$search.'%' )
-            ->orWhere('ShippingStatusId', 'LIKE', '%'.$search.'%' )
-            ->orWhere('PaymentStatusId', 'LIKE', '%'.$search.'%' )
             ->orderBy('Id','desc')
             ->paginate($qty);
             

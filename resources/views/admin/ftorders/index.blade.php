@@ -26,7 +26,7 @@
     <div class="card-body" >
         <form action="{{route('ftorders.search')}}" method="POST" class= "form form-inline">
         @csrf
-            <input type="search" name="search" class="form-control" value = "{{$search}}"placeholder ="Order Id"/>&nbsp &nbsp
+            <input type="search" name="search" class="form-control" value = "{{$search}}"placeholder ="Order Id">&nbsp &nbsp
 
             <select  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                 <option selected>Store Name</option>
